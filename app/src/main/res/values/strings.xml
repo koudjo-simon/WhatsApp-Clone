@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Application 2</string>
+    <string name="nom_d_utilisateur">Nom d\'utilisateur</string>
+    <string name="notification_de_s_curit_changer_de_num_ro">Notification de sécurité, changer de numéro</string>
+</resources>
