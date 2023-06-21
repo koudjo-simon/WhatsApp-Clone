@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             }else{
                 usernameEdt.error = null
                 val intent = Intent(this, SettingsActivity::class.java)
-                //intent.putExtra("USERNAME", username)
+                intent.putExtra("USERNAME", username)
                 startActivity(intent)
             }
         }

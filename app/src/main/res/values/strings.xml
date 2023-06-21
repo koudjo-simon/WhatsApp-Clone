@@ -2,4 +2,14 @@
     <string name="app_name">Application 2</string>
     <string name="nom_d_utilisateur">Nom d\'utilisateur</string>
     <string name="notification_de_s_curit_changer_de_num_ro">Notification de sécurité, changer de numéro</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="valider">Valider</string>
+    <string name="confirmer_mot_de_passe">Confirmer Mot de Passe</string>
+    <string name="mot_de_passe">Mot de Passe</string>
+    <string name="tel">Tel</string>
+    <string name="email">Email</string>
+    <string name="nom_et_pr_nom">Nom et Prénom</string>
+    <string name="inscription">Inscription</string>
+    <string name="nom_d_utilisateur_s">Nom d\'utilisateur</string>
+    <string name="user_actu">User Actu</string>
 </resources>
