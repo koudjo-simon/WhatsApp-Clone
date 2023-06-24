@@ -60,13 +60,13 @@ class RegisterActivity : AppCompatActivity() {
         val telEdtText = telEdt.text.toString()
         val passwordText = passwordEdt.text.toString()
         val confirmPasswordEdtText = confirmPasswordEdt.text.toString()
-        if (namesEdtText == null || namesEdtText.length < 3){
+        if (namesEdtText.length < 3){
             namesEdt.error = "Le nom doit contenir au moins 3 charactères"
             isOk = false
         }else {
             namesEdt.error = null
         }
-        if (emailEdtText == null || emailEdtText.isEmpty()){
+        if (emailEdtText.isEmpty()){
             emailEdt.error = "Veuillez renseignez cette information"
             isOk = false
         }else{
@@ -77,13 +77,13 @@ class RegisterActivity : AppCompatActivity() {
                 emailEdt.error = null
             }
         }
-        if (telEdtText == null || telEdtText.isEmpty()){
+        if (telEdtText.isEmpty()){
             telEdt.error = "Veillez renseigner ce champ"
             isOk = false
         }else {
             telEdt.error = null
         }
-        if (passwordText == null || passwordText.isEmpty()){
+        if (passwordText.isEmpty()){
             passwordEdt.error = "Veillez renseigner ce champ"
             isOk = false
         }else {

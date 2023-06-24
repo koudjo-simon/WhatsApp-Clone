@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
         android:orientation="vertical">
 
         <ImageView
@@ -24,7 +25,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             android:textSize="40sp"
-            android:text="Connexion"
+            android:text="@string/connexion"
             android:textStyle="bold"
             android:padding="5dp"
             />
@@ -54,7 +55,7 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="40dp"
-            android:text="Valider"
+            android:text="@string/valider_"
             android:textSize="25sp"
             android:gravity="center_horizontal"
             android:layout_gravity="center_horizontal"
@@ -65,7 +66,7 @@
             android:id="@+id/l_go_to_register_page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Créer un compte"
+            android:text="@string/cr_er_un_compte"
             android:textSize="20sp"
             android:textColor="@color/bleu"
             android:layout_gravity="center_horizontal"

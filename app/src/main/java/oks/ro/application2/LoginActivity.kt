@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
         var isOk = true
         val emailEdtText = emailEdt.text.toString()
         val passwordEdtText = passwordEdt.text.toString()
-        if (emailEdtText == null || emailEdtText.isEmpty()){
+        if (emailEdtText.trim().isEmpty()){
             emailEdt.error = "Veuillez renseignez cette information"
             isOk = false
         }else{
@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
                 emailEdt.error = null
             }
         }
-        if (passwordEdtText == null || passwordEdtText.isEmpty() ){
+        if (passwordEdtText.trim().isEmpty()){
             passwordEdt.error = "Veuillez renseignez cette information"
             isOk = false
         }else{

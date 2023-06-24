@@ -12,4 +12,8 @@
     <string name="inscription">Inscription</string>
     <string name="nom_d_utilisateur_s">Nom d\'utilisateur</string>
     <string name="user_actu">User Actu</string>
+    <string name="inviter_un_contact">Inviter un contact</string>
+    <string name="connexion">Connexion</string>
+    <string name="valider_">Valider</string>
+    <string name="cr_er_un_compte">Créer un compte</string>
 </resources>
