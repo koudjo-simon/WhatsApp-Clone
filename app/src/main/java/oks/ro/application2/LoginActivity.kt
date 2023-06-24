@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import oks.ro.application2.utils.UtilsFunctions
 
 class LoginActivity : AppCompatActivity() {
     lateinit var emailEdt: EditText
@@ -41,14 +42,19 @@ class LoginActivity : AppCompatActivity() {
     private fun validerFormulaire(): Boolean{
         var isOk = true
         val emailEdtText = emailEdt.text.toString()
-        val passwordEdtText = emailEdt.text.toString()
-        if (emailEdtText == null){
+        val passwordEdtText = passwordEdt.text.toString()
+        if (emailEdtText == null || emailEdtText.isEmpty()){
             emailEdt.error = "Veuillez renseignez cette information"
             isOk = false
         }else{
-            emailEdt.error = null
+            if(!UtilsFunctions.isValidEmail(emailEdtText)){
+                emailEdt.error = "Email invalid"
+                isOk = false
+            }else{
+                emailEdt.error = null
+            }
         }
-        if (passwordEdtText == null){
+        if (passwordEdtText == null || passwordEdtText.isEmpty() ){
             passwordEdt.error = "Veuillez renseignez cette information"
             isOk = false
         }else{

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import oks.ro.application2.utils.UtilsFunctions
 
 class RegisterActivity : AppCompatActivity() {
 //    Déclaration des Views
@@ -65,20 +66,25 @@ class RegisterActivity : AppCompatActivity() {
         }else {
             namesEdt.error = null
         }
-        if (emailEdtText == null){
-            emailEdt.error = "Veillez renseigner ce champ"
+        if (emailEdtText == null || emailEdtText.isEmpty()){
+            emailEdt.error = "Veuillez renseignez cette information"
             isOk = false
-        }else {
-            emailEdt.error = null
+        }else{
+            if(!UtilsFunctions.isValidEmail(emailEdtText)){
+                emailEdt.error = "Email invalid"
+                isOk = false
+            }else{
+                emailEdt.error = null
+            }
         }
-        if (telEdtText == null){
+        if (telEdtText == null || telEdtText.isEmpty()){
             telEdt.error = "Veillez renseigner ce champ"
             isOk = false
         }else {
             telEdt.error = null
         }
-        if (passwordText == null){
-            namesEdt.error = "Veillez renseigner ce champ"
+        if (passwordText == null || passwordText.isEmpty()){
+            passwordEdt.error = "Veillez renseigner ce champ"
             isOk = false
         }else {
             if (!passwordText.equals(confirmPasswordEdtText, ignoreCase = false)){
