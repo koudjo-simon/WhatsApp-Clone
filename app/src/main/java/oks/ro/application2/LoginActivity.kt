@@ -1,12 +1,13 @@
 package oks.ro.application2
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import oks.ro.application2.utils.UtilsFunctions
 
 class LoginActivity : AppCompatActivity() {
@@ -20,18 +21,31 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        goToRegisterPageTv = findViewById(R.id.l_go_to_register_page)
         emailEdt = findViewById(R.id.l_email_edt)
         passwordEdt = findViewById(R.id.l_password_edt)
         validerBtn = findViewById(R.id.l_valider_btn)
         goToRegisterPageTv = findViewById(R.id.l_go_to_register_page)
 
-        validerBtn.setOnClickListener {
-            if (validerFormulaire()){
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
-        }
+        val loginSharePreferences =
+            this.getSharedPreferences("isloginSharedPref", Context.MODE_PRIVATE)
 
+        val isFirstLogin = loginSharePreferences.getBoolean("isFirstLogin", true)
+
+        if (isFirstLogin){
+            validerBtn.setOnClickListener {
+                if (validerFormulaire()){
+                    val editor = loginSharePreferences.edit()
+                    editor.putBoolean("isFirstLogin", false)
+                    editor.apply()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }else{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         goToRegisterPageTv.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -58,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
             passwordEdt.error = "Veuillez renseignez cette information"
             isOk = false
         }else{
-            passwordEdt.error == null
+            passwordEdt.error = null
         }
         return isOk
     }
