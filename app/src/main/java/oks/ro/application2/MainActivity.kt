@@ -7,12 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import oks.ro.application2.model.Student
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var settingsBtn: Button
-    lateinit var usernameEdt: EditText
     lateinit var sharedPref: SharedPreferences
+    lateinit var studentRcv: RecyclerView
+    lateinit var studentList: ArrayList<Student>
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,22 +30,15 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        settingsBtn = findViewById(R.id.go_to_settings)
-        usernameEdt = findViewById(R.id.username_edt)
+        studentRcv = findViewById(R.id.student_rcv)
+        studentList = ArrayList()
 
-        settingsBtn.setOnClickListener {
-            println("***************** Settings Button clicked")
-
-            val username = usernameEdt.text.toString()
-            if (username.isEmpty() || username.length < 2){
-                usernameEdt.error = "Nom d'utilisateur non valide"
-            }else{
-                usernameEdt.error = null
-                val intent = Intent(this, SettingsActivity::class.java)
-                intent.putExtra("USERNAME", username)
-                startActivity(intent)
-            }
+        for(i in 1..50){
+            studentList.add(Student("Nom$i", "email$i@gmail.com","+2289712231$i"))
         }
 
+        val adapter = StudentAdapter(studentList)
+        studentRcv.layoutManager = LinearLayoutManager(this)
+        studentRcv.adapter = adapter
     }
 }

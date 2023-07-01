@@ -5,25 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/username_edt"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/student_rcv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nom_d_utilisateur"
-        android:layout_margin="20dp"
-        />
-
-    <Button
-        android:id="@+id/go_to_settings"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Parametres"
-        android:height="20dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        />
+        tools:itemCount="70"
+        tools:listitem="@layout/item_row" />
 
 </LinearLayout>

@@ -16,4 +16,5 @@
     <string name="connexion">Connexion</string>
     <string name="valider_">Valider</string>
     <string name="cr_er_un_compte">Créer un compte</string>
+    <string name="userName">Username</string>
 </resources>
