@@ -25,8 +25,10 @@ class StudentAdapter(var studentList: List<Student>) :
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val student = studentList[position]
         holder.update(student)
+
         holder.row.setOnClickListener {
             val intent = Intent(holder.itemView.context, SettingsActivity::class.java)
+            intent.putExtra("USERNAME", student.fullName)
             holder.itemView.context.startActivity(intent)
         }
     }
