@@ -1,8 +1,8 @@
 package oks.ro.application2
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -11,15 +11,19 @@ import androidx.appcompat.app.AppCompatActivity
 import oks.ro.application2.utils.UtilsFunctions
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var emailEdt: EditText
-    lateinit var passwordEdt: EditText
-    lateinit var validerBtn: Button
-    lateinit var goToRegisterPageTv: TextView
+    private lateinit var emailEdt: EditText
+    private lateinit var passwordEdt: EditText
+    private lateinit var validerBtn: Button
+    private lateinit var goToRegisterPageTv: TextView
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        sharedPref = getSharedPreferences("LOGINSHAREPREF", MODE_PRIVATE)
 
         goToRegisterPageTv = findViewById(R.id.l_go_to_register_page)
         emailEdt = findViewById(R.id.l_email_edt)
@@ -27,25 +31,17 @@ class LoginActivity : AppCompatActivity() {
         validerBtn = findViewById(R.id.l_valider_btn)
         goToRegisterPageTv = findViewById(R.id.l_go_to_register_page)
 
-        val loginSharePreferences =
-            this.getSharedPreferences("isloginSharedPref", Context.MODE_PRIVATE)
-
-        val isFirstLogin = loginSharePreferences.getBoolean("isFirstLogin", true)
-
-        if (isFirstLogin){
-            validerBtn.setOnClickListener {
-                if (validerFormulaire()){
-                    val editor = loginSharePreferences.edit()
-                    editor.putBoolean("isFirstLogin", false)
-                    editor.apply()
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
+        validerBtn.setOnClickListener {
+            if (validerFormulaire()) {
+                editor = sharedPref.edit()
+                editor.putBoolean("ISFIRSTLOGIN", false)
+                editor.commit()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
             }
-        }else{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
         }
+
 
         goToRegisterPageTv.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -53,25 +49,25 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun validerFormulaire(): Boolean{
+    private fun validerFormulaire(): Boolean {
         var isOk = true
         val emailEdtText = emailEdt.text.toString()
         val passwordEdtText = passwordEdt.text.toString()
-        if (emailEdtText.trim().isEmpty()){
+        if (emailEdtText.trim().isEmpty()) {
             emailEdt.error = "Veuillez renseignez cette information"
             isOk = false
-        }else{
-            if(!UtilsFunctions.isValidEmail(emailEdtText)){
+        } else {
+            if (!UtilsFunctions.isValidEmail(emailEdtText)) {
                 emailEdt.error = "Email invalid"
                 isOk = false
-            }else{
+            } else {
                 emailEdt.error = null
             }
         }
-        if (passwordEdtText.trim().isEmpty()){
+        if (passwordEdtText.trim().isEmpty()) {
             passwordEdt.error = "Veuillez renseignez cette information"
             isOk = false
-        }else{
+        } else {
             passwordEdt.error = null
         }
         return isOk

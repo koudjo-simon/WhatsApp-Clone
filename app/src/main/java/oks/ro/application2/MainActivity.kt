@@ -2,6 +2,7 @@ package oks.ro.application2
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -11,11 +12,20 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var settingsBtn: Button
     lateinit var usernameEdt: EditText
+    lateinit var sharedPref: SharedPreferences
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        sharedPref = getSharedPreferences("LOGINSHAREPREF", MODE_PRIVATE)
+
+        if (!sharedPref.contains("ISFIRSTLOGIN")){
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         settingsBtn = findViewById(R.id.go_to_settings)
         usernameEdt = findViewById(R.id.username_edt)
