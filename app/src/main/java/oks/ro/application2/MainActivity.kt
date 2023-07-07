@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         studentList = ArrayList()
 
         for(i in 1..50){
-            studentList.add(Student("Nom$i", "email$i@gmail.com","+2289712231$i"))
+            studentList.add(Student("Student $i", "email$i@gmail.com","+2289712231$i"))
         }
 
         val adapter = StudentAdapter(studentList)

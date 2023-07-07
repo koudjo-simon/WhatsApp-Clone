@@ -14,7 +14,6 @@ import oks.ro.application2.model.Student
 
 class StudentAdapter(var studentList: List<Student>) :
     RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_row, parent, false)
         return StudentViewHolder(view)
@@ -50,6 +49,5 @@ class StudentAdapter(var studentList: List<Student>) :
             fullname.text = student.fullName
             email.text = student.email
         }
-
     }
 }
